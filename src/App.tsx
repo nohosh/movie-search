@@ -1,24 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Search from './components/Search';
+import { KEY } from './constants';
 
 function App() {
+  const [search, setSearch] = useState('');
+  const [movies, setMovies] = useState<any[]>([]);
+  const pageNumber = '1';
+  useEffect(()=>{
+    fetch(`https://www.omdbapi.com/?s=${search}&page=${pageNumber}&apikey=${KEY}`).then(res=>res.json())
+    .then(res=>setMovies(res.Search));
+  },[search]);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <Search  setSearch={setSearch}/>
+    <ul>
+    {movies && movies.map(movie=>{
+      return <li>{movie.Title}</li>
+    })}
+    </ul>
     </div>
   );
 }
