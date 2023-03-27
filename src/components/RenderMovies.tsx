@@ -6,12 +6,12 @@ import {
     CellMeasurerCache,
     InfiniteLoader
   } from "react-virtualized";
-import { Movie } from "../types";
+import { Movie, Movies } from "../types";
 
   type Props = {
     hasNextPage: boolean;
     isNextPageLoading: boolean;
-    movies: any[];
+    movies: Movies;
     loadNextPage: () => void;    
     onSelect: (movie: Movie) => void;        
   };
@@ -43,6 +43,7 @@ const RenderMovies: React.FC<Props> =({movies, hasNextPage, loadNextPage, isNext
                     <AutoSizer>
                         {({width,height})=>
                             <List
+                            className="list"
                             width={width} 
                             height={height} 
                             rowHeight={cache.current.rowHeight} 

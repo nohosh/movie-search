@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { KEY } from "../constants";
+import { Movies} from "../types";
 
 const movieCache = new Map();
 export default function useMovieSearch(query: string, pageNumber: string) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [errMsg, setErrMsg] = useState("");
-  const [movies, setMovies] = useState<any[]>([]);
+  const [movies, setMovies] = useState<Movies>([]);
   const [hasMore, setHasMore] = useState(false);
 
   useEffect(() => {

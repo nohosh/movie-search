@@ -208,3 +208,6 @@
   }
 }
 
+.list:focus{
+  outline: none;
+}

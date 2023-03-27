@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import useDebounce from "../hooks/useDebounce";
 
 type Props = {
-    setSearch:(str: any)=>void
+    setSearch:(str: string)=>void
 }
 const Search: React.FC<Props> =({setSearch})=>{
 
