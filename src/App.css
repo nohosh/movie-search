@@ -2,37 +2,31 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.snackbar {
+  width: 100%;
   color: white;
+  max-width: 150px;
+  background: white;
+  position: fixed;  
+  padding: 5px;  
+  bottom: 5%;
+  left: 50%;
+  border-radius: 5px;
+  transform: translateX(-50%);   
+  background-color: crimson;     
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); 
+  animation-name: slide-in-snackbar;
+  animation-duration: 0.5s;
 }
 
-.App-link {
-  color: #61dafb;
-}
 
-@keyframes App-logo-spin {
+@keyframes slide-in-snackbar {
   from {
-    transform: rotate(0deg);
+    opacity: 0;
+    transform: translate(-50%, 50px);
   }
   to {
-    transform: rotate(360deg);
+    opacity: 1;
+    transform: translateX(-50%, 0);
   }
 }
