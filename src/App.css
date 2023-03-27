@@ -2,6 +2,20 @@
   text-align: center;
 }
 
+.movie-list-item{
+  border:  1px solid black;
+  margin: 5px;
+  display: flex;  
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.movie-list-item:hover{
+  cursor: pointer;
+  background-color: black;
+  color: white;
+}
+
 .modal {
   position: fixed;
   top: 0;

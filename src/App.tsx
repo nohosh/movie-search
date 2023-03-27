@@ -1,6 +1,7 @@
 import React, {  useCallback, useEffect, useState } from 'react';
 import './App.css';
 import Modal from './components/Modal';
+import RenderMovies from './components/RenderMovies';
 import Search from './components/Search';
 import Snackbar from './components/Snackbar';
 import useMovieSearch from './hooks/useMovieSearch';
@@ -12,7 +13,7 @@ function App() {
   const [snackBar, setSnackBar] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [selectedMovie, setSelectedMovie] = useState<Movie>();
-  const { movies, hasMore, loading, errMsg } = useMovieSearch(
+  const { movies, hasMore, loading, errMsg ,error} = useMovieSearch(
     search,
     `${pageNo}`
   );
@@ -23,8 +24,8 @@ function App() {
   }, []);
 
   useEffect(()=>{    
-    if(errMsg.length>0)setSnackBar(true);
-  }, [errMsg]);
+    if(error)setSnackBar(true);
+  }, [error]);
 
   const modalContent = selectedMovie ? (
     <div className="modal-movie">
@@ -44,11 +45,13 @@ function App() {
   return (
     <div className="App">
     <Search  setSearch={setSearch}/>
-    <ul>
+
+    {/* <ul>
     {movies && movies.map(movie=>{
       return <li onClick={()=>handleSelectMovie(movie)}>{movie.Title}</li>
     })}
-    </ul>
+    </ul> */}
+    {movies.length ? <RenderMovies onSelect={handleSelectMovie} hasNextPage={hasMore} isNextPageLoading={loading} movies={movies} loadNextPage={()=>setPageNo((curr)=> curr+1)}/>:<h1>Try me{error && <>🤮</>}</h1>}
     <button onClick={()=>setPageNo(pageNo+1)}>+1</button>
     <Snackbar
         showSnackbar={snackBar}
