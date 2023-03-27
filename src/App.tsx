@@ -27,6 +27,10 @@ function App() {
     if(error)setSnackBar(true);
   }, [error]);
 
+  useEffect(()=>{
+    if(search==='')setPageNo(1);
+  },[search])
+
   const modalContent = selectedMovie ? (
     <div className="modal-movie">
       <img
@@ -44,25 +48,19 @@ function App() {
 
   return (
     <div className="App">
-    <Search  setSearch={setSearch}/>
-
-    {/* <ul>
-    {movies && movies.map(movie=>{
-      return <li onClick={()=>handleSelectMovie(movie)}>{movie.Title}</li>
-    })}
-    </ul> */}
-    {movies.length ? <RenderMovies onSelect={handleSelectMovie} hasNextPage={hasMore} isNextPageLoading={loading} movies={movies} loadNextPage={()=>setPageNo((curr)=> curr+1)}/>:<h1>Try me{error && <>🤮</>}</h1>}
-    <button onClick={()=>setPageNo(pageNo+1)}>+1</button>
-    <Snackbar
-        showSnackbar={snackBar}
-        message={errMsg}
-        onClose={() => setSnackBar(false)}
-      />
+      {loading && <div className='dot-elastic'></div>}
+      <Search  setSearch={setSearch}/>   
+      {movies.length ? <RenderMovies onSelect={handleSelectMovie} hasNextPage={hasMore} isNextPageLoading={loading} movies={movies} loadNextPage={()=>setPageNo((curr)=> curr+1)}/>:<h1>Try me{error && <>🤮</>}</h1>}    
+      <Snackbar
+          showSnackbar={snackBar}
+          message={errMsg}
+          onClose={() => setSnackBar(false)}
+        />
       <Modal
-        content={modalContent}
-        showModal={showModal}
-        onClose={() => setShowModal(false)}
-      />
+          content={modalContent}
+          showModal={showModal}
+          onClose={() => setShowModal(false)}
+        />
     </div>
 
   );

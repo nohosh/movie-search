@@ -10,12 +10,13 @@ export default function useMovieSearch(query: string, pageNumber: string) {
   const [hasMore, setHasMore] = useState(false);
 
   useEffect(() => {
-    setMovies([]);
+    setMovies([]);    
   }, [query]);
 
   useEffect(() => {
     if (query) {
-      if (pageNumber === "0" && movieCache.has(query)) {
+    
+      if (pageNumber === "1" && movieCache.has(query)) {
         setMovies(movieCache.get(query));
       } else {
         setLoading(true);
