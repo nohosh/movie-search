@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { KEY } from "../constants";
-import { Movies} from "../types";
+import { Movies } from "../types";
 
 const movieCache = new Map();
 export default function useMovieSearch(query: string, pageNumber: string) {
@@ -11,12 +11,11 @@ export default function useMovieSearch(query: string, pageNumber: string) {
   const [hasMore, setHasMore] = useState(false);
 
   useEffect(() => {
-    setMovies([]);    
+    setMovies([]);
   }, [query]);
 
   useEffect(() => {
     if (query) {
-    
       if (pageNumber === "1" && movieCache.has(query)) {
         setMovies(movieCache.get(query));
       } else {

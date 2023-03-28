@@ -5,11 +5,7 @@ type Props = {
   message: string;
   onClose: () => void;
 };
-const Snackbar: React.FC<Props> = ({
-  showSnackbar,
-  message,
-  onClose,
-}) => {  
+const Snackbar: React.FC<Props> = ({ showSnackbar, message, onClose }) => {
   useEffect(() => {
     let timer = setTimeout(() => {
       onClose();
@@ -20,7 +16,10 @@ const Snackbar: React.FC<Props> = ({
   });
 
   return !showSnackbar ? null : (
-    <div className="snackbar" onClick={(e) => e.stopPropagation()}>
+    <div
+      className="snackbar"
+      onClick={(e) => e.stopPropagation()}
+    >
       {message}
     </div>
   );

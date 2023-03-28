@@ -19,8 +19,14 @@ const Modal = ({ showModal, content, onClose }: ModalProps) => {
   }, [onClose]);
 
   return !showModal ? null : (
-    <div className="modal" onClick={onClose}>
-      <div className="modal-dialog" onClick={(e) => e.stopPropagation()}>
+    <div
+      className="modal"
+      onClick={onClose}
+    >
+      <div
+        className="modal-dialog"
+        onClick={(e) => e.stopPropagation()}
+      >
         {content}
       </div>
     </div>
